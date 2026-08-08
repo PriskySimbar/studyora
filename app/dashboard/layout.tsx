@@ -1,20 +1,16 @@
-import Sidebar from "../components/layout/Sidebar";
-import Topbar from "../components/layout/Topbar";
+import { auth } from "@/auth";
+import DashboardLayoutClient from "./layout-client";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
   return (
-    <div className="flex min-h-screen bg-slate-100">
-      <Sidebar />
-
-      <div className="flex flex-1 flex-col">
-        <Topbar />
-
-        <main className="flex-1 p-6">{children}</main>
-      </div>
-    </div>
+    <DashboardLayoutClient userName={session?.user?.name ?? undefined}>
+      {children}
+    </DashboardLayoutClient>
   );
 }
