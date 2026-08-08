@@ -1,36 +1,243 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Studyora
 
-## Getting Started
+> A modern full-stack learning platform for managing courses, assignments, and academic activities.
 
-First, run the development server:
+Studyora is a full-stack web application built with Next.js and TypeScript. It provides students with a centralized platform to organize their academic activities through authentication, course management, assignment management, and a personalized dashboard.
+
+## ✨ Features
+
+- 🔐 User registration & login
+- 🔒 Secure password hashing with bcrypt
+- 📚 Course management
+- 📝 Assignment management
+- 📊 Personalized dashboard
+- ⚙️ User settings
+- 📱 Responsive interface
+- 🗄️ PostgreSQL database
+- 🔄 Server-side data handling with Next.js Server Actions
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|---|---|
+| Framework | Next.js |
+| Language | TypeScript |
+| UI | React + Tailwind CSS |
+| Authentication | Auth.js |
+| Backend | Next.js Server Actions |
+| ORM | Prisma |
+| Database | PostgreSQL |
+| Database Hosting | Neon |
+| Security | bcrypt |
+| Deployment | Vercel |
+
+## 🏗️ Architecture
+
+```text
+User
+ │
+ ▼
+Next.js / React
+ │
+ ├── Authentication ──► Auth.js
+ │
+ ├── Server Actions
+ │        │
+ │        ▼
+ │      Prisma
+ │        │
+ │        ▼
+ │   PostgreSQL / Neon
+ │
+ └── Dashboard
+      ├── Courses
+      ├── Assignments
+      └── Settings
+```
+
+## 📁 Project Structure
+
+```text
+studyora/
+├── app/
+│   ├── actions/
+│   ├── components/
+│   ├── dashboard/
+│   ├── login/
+│   ├── register/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── lib/
+│   ├── generated/
+│   ├── prisma.ts
+│   └── utils.ts
+│
+├── prisma/
+│   ├── migrations/
+│   └── schema.prisma
+│
+├── public/
+├── .env
+├── package.json
+└── README.md
+```
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/studyora.git
+cd studyora
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file in the root directory:
+
+```env
+DATABASE_URL="your-postgresql-connection-string"
+AUTH_SECRET="your-auth-secret"
+```
+
+> Never commit your `.env` file or expose your database credentials and authentication secrets.
+
+### 4. Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+### 5. Run database migration
+
+```bash
+npx prisma migrate dev
+```
+
+### 6. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🗄️ Database
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Studyora uses PostgreSQL with Prisma ORM.
 
-## Learn More
+Current user model:
 
-To learn more about Next.js, take a look at the following resources:
+```text
+User
+├── id
+├── name
+├── email
+├── password
+└── createdAt
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Passwords are hashed using bcrypt before being stored in the database.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔐 Authentication Flow
 
-## Deploy on Vercel
+```text
+Register
+   │
+   ▼
+Validate Input
+   │
+   ▼
+Check Existing User
+   │
+   ▼
+Hash Password
+   │
+   ▼
+Store User in PostgreSQL
+   │
+   ▼
+Login with Auth.js
+   │
+   ▼
+Authenticated Session
+   │
+   ▼
+Dashboard
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 Development Commands
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev
+```
+
+```bash
+npm run lint
+```
+
+```bash
+npx prisma generate
+```
+
+```bash
+npx prisma migrate dev
+```
+
+## 📌 Roadmap
+
+- [x] Landing page
+- [x] Registration
+- [x] Login
+- [x] PostgreSQL integration
+- [x] Prisma ORM
+- [x] Dashboard
+- [x] Course management
+- [x] Assignment management
+- [x] Settings
+- [ ] Production deployment
+- [ ] Assignment reminders
+- [ ] Progress analytics
+- [ ] Search & filtering
+
+## 🎯 What I Learned
+
+Through this project, I practiced:
+
+- Building full-stack applications with Next.js
+- Developing reusable React components
+- Using TypeScript
+- Implementing authentication
+- Designing database schemas with Prisma
+- Connecting Next.js to PostgreSQL
+- Using Server Actions
+- Handling environment variables
+- Building responsive interfaces
+- Preparing applications for production deployment
+
+## 🌐 Deployment
+
+Planned deployment:
+
+- **Application:** Vercel
+- **Database:** Neon PostgreSQL
+
+## 👨‍💻 Author
+
+**Prisky Simbar**
+
+Computer Science Student
+
+Interested in Full-Stack Development, AI, and Software Engineering.
+
+---
+
+⭐ If you find Studyora useful, consider giving this repository a star.
