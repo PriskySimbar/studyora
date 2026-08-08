@@ -3,7 +3,7 @@
 > A modern full-stack learning platform for managing courses, assignments, and academic activities.
 
 Studyora is a full-stack web application built with Next.js and TypeScript. It provides students with a centralized platform to organize their academic activities through authentication, course management, assignment management, and a personalized dashboard.
-
+🌐 **Live Demo:** https://studyoraa.vercel.app/
 ## ✨ Features
 
 - 🔐 User registration & login
